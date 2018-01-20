@@ -46,6 +46,8 @@ public final class SchemaHandler
 
     public static List<TableRow> GetRows(String schema, Context context)
     {
+        if (schema == null || schema.trim().isEmpty())
+            return new ArrayList<>();
         List<SchemaVariable> variables = GetVariables(schema);
         List<View> views = new ArrayList<>();
 
@@ -254,6 +256,8 @@ public final class SchemaHandler
 
     public static List<SchemaVariable> GetVariables(String schema)
     {
+        if (schema == null || schema.trim().isEmpty())
+            return new ArrayList<>();
         List<SchemaVariable> vars = new ArrayList<>();
         try
         {

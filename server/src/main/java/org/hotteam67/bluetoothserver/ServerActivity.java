@@ -602,9 +602,7 @@ public class ServerActivity extends AppCompatActivity {
                 .setValue(json);
 
         VisualLog("Received Match Number: "
-                + json.get(Constants.MATCH_NUMBER_JSON_TAG)
-                + " For Team Number: "
-                + json.get(Constants.TEAM_NUMBER_JSON_TAG));
+                + json.get(Constants.MATCH_NUMBER_JSON_TAG));
     }
 
 

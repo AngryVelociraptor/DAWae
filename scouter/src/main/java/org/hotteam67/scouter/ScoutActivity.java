@@ -51,8 +51,6 @@ public class ScoutActivity extends BluetoothActivity
     EditText teamNumber;
     EditText matchNumber;
 
-    EditText notes;
-
     Toolbar toolbar;
 
     GestureDetectorCompat gestureDetectorCompat;
@@ -146,9 +144,6 @@ public class ScoutActivity extends BluetoothActivity
         };
 
 
-        notes = (EditText) findViewById(R.id.notes);
-        notes.setFilters(new InputFilter[] { filter });
-
         matchNumber = (EditText) findViewById(R.id.matchNumberText);
 
         inputTable = (TableLayout) findViewById(R.id.scoutLayout);
@@ -232,19 +227,6 @@ public class ScoutActivity extends BluetoothActivity
             public void afterTextChanged(Editable s)
             {
 
-            }
-        });
-
-        gestureDetectorCompat = new GestureDetectorCompat(this, new GestureListener());
-
-        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
-        // scrollView.requestDisallowInterceptTouchEvent(true);
-        scrollView.setOnTouchListener(new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                return gestureDetectorCompat.onTouchEvent(event);
             }
         });
     }
@@ -465,6 +447,7 @@ public class ScoutActivity extends BluetoothActivity
             values += div;
         }
 
+        /*
 
         String s = notes.getText().toString().replace("\n", " ").replace(",", " ");
         if (!s.trim().isEmpty())
@@ -474,6 +457,7 @@ public class ScoutActivity extends BluetoothActivity
                 values = values.substring(0, values.length() - 1);
 
         // l("Current Values: " + values);
+        */
 
         return values;
     }
@@ -490,36 +474,6 @@ public class ScoutActivity extends BluetoothActivity
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_ENABLE_PERMISSION);
-        }
-    }
-
-    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
-
-        @Override
-        public boolean onDown(MotionEvent event) {
-            // l("onDown: " + event.toString());
-            return false; // Allow scrollview work
-        }
-
-        @Override
-        public boolean onFling(MotionEvent event1, MotionEvent event2,
-                               float velocityX, float velocityY) {
-            float sens = 500;
-            if (
-                    Math.abs(velocityX) > Math.abs(velocityY)
-                    && Math.abs(velocityX) > sens)
-            {
-                if (velocityX > 0)
-                {
-                    loadPrevious();
-                }
-                else
-                {
-                    loadNext();
-                }
-                return true;
-            }
-            return false;
         }
     }
 
